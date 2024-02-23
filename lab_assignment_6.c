@@ -2,7 +2,34 @@
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+	//code by Julian Grace
+    //check that range is valid
+    if(low>high){
+        return -1;
+    }
+
+    //index for middle of array
+    int m = (low + high)/2;
+
+    //if middle index is value return index
+    if(numbers[m]==value){
+        return m;
+    }
+
+    //if value is lesser than index m-1, search between low and m
+    if(numbers[m]>value){
+        return search(numbers,low,m-1,value);
+    }
+
+    //if value is greater than index m, search between m+1 and high
+    if(numbers[m]<value){
+        return search(numbers,m+1,high,value);
+    }
+
+    //if low and high are the same and not the value we are searching for, return -1 (its not in the array)
+    if((low==high)&&(numbers[low]!=value)){
+        return -1;
+    }
 }
 
 void printArray(int numbers[], int sz)
